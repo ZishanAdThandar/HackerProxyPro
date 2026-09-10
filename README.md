@@ -40,7 +40,7 @@ Hacker Proxy Pro is a premium open source proxy controller for modern browsers t
 ## 📃 Developer 
 
 - Developed by Zishan Ahamed Thandar.
-- Linktree: https://ZishanAdThandar.github.io/linktree
+- Linktree: https://zishanhack.com/links
 
 ## 📜 License
 
