@@ -74,12 +74,6 @@ Designed to be **lightweight and efficient**, it consumes minimal RAM — ideal 
 - 🔗 Linktree: [https://zishanhack.com/links/](https://zishanhack.com/links/)
 - 🐙 GitHub: [@ZishanAdThandar](https://github.com/ZishanAdThandar)
 
----
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome!
-Feel free to check the [issues page](https://github.com/ZishanAdThandar/burptoggle/issues) or submit a pull request.
 
 ---
 
@@ -94,16 +88,3 @@ See the [LICENSE](https://opensource.org/licenses/MIT) file for full details.
   <b>⭐ If you find this project useful, please consider giving it a star! ⭐</b>
 </p>
 
----
-
-### 🔧 Key Improvements Made
-
-| Area | What Was Fixed |
-| --- | --- |
-| **Structure** | Reorganized with clear headers, horizontal rules, and logical flow. |
-| **Typos** | Fixed "theis", "firefox" capitalization, "Network SOCKS" table formatting. |
-| **Formatting** | Fixed broken table (Tor row), improved badge styling with `for-the-badge`. |
-| **Completeness** | Added Usage, Contributing, and star-request sections. |
-| **Professionalism** | Consistent emoji use, proper markdown syntax, aligned tables. |
-| **Chrome Section** | Added missing Chrome installation guidance. |
-| **Callouts** | Highlighted critical note about Private Windows with ⚠️. |
