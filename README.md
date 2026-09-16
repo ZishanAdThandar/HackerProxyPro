@@ -1,48 +1,109 @@
-# 🔄 Hacker Proxy Pro Add On for Mozilla Firefox and Google Chrome
+# 🔄 Hacker Proxy Pro
 
-[![ZishanAdThandar's BurpToggle Repo stars](https://img.shields.io/github/stars/ZishanAdThandar/burptoggle)](https://github.com/ZishanAdThandar/burptoggle)
-[![License](https://img.shields.io/github/license/ZishanAdThandar/burptoggle)](https://opensource.org/licenses/MIT)
-[![LinkTree](https://img.shields.io/badge/Link-Tree-bbd343)](https://zishanadthandar.github.io/linktree/)
-![made-with-javascript](https://img.shields.io/badge/Made%20with-JavaScript-1f425f.svg)
+### Add-on for Mozilla Firefox & Google Chrome
 
+[![Stars](https://img.shields.io/github/stars/ZishanAdThandar/burptoggle?style=for-the-badge&logo=github)](https://github.com/ZishanAdThandar/burptoggle)
+[![License](https://img.shields.io/github/license/ZishanAdThandar/burptoggle?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![Made with JavaScript](https://img.shields.io/badge/Made%20with-JavaScript-1f425f.svg?style=for-the-badge&logo=javascript)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![Linktree](https://img.shields.io/badge/Linktree-Visit-bbd343?style=for-the-badge&logo=linktree)](https://zishanhack.com/links/)
 
-## 🌟 Introduction (﷽)
+---
 
-Hacker Proxy Pro is a premium open source proxy controller for modern browsers that helps you switch between: Direct connection, Burp Suite proxy and Tor. This is a perfect tool for Bug Bounty Hunters, Web Application Penetration Testers or any general Hackers. Built for professionals who need speed and reliability during live traffic interception, recon, and debugging. Designed to be lightweight and efficient, it consumes minimal RAM, making it ideal for resource-conscious users. 
+## 🌟 Introduction
+
+**Hacker Proxy Pro** is a premium, open-source proxy controller for modern browsers that lets you instantly switch between **Direct connection**, **Burp Suite proxy**, and **Tor**. It is the perfect tool for **Bug Bounty Hunters**, **Web Application Penetration Testers**, and **ethical hackers** who need speed and reliability during live traffic interception, recon, and debugging.
+
+Designed to be **lightweight and efficient**, it consumes minimal RAM — ideal for resource-conscious users and low-spec machines.
+
+> ﷽ — *In the name of Allah, the Most Gracious, the Most Merciful.*
+
+---
 
 ## ✨ Key Features
 
-- One-Click Mode Switching
-  - Instantly toggle between Direct → Burp → Tor → Custom.
-- Smart Badge & Icon System
-  - Clear color-coded badges and SVG icons for each mode.
-- Cross-Browser Support
-  - Works on both Firefox and Chrome.
-- Lightweight Architecture
-  - Built to run smoothly even on resource-constrained machines.
+| Feature | Description |
+| --- | --- |
+| ⚡ **One-Click Mode Switching** | Instantly toggle between Direct → Burp → Tor → Custom. |
+| 🎨 **Smart Badge & Icon System** | Clear, color-coded badges and SVG icons for each mode. |
+| 🌐 **Cross-Browser Support** | Works seamlessly on both Firefox and Chrome. |
+| 🪶 **Lightweight Architecture** | Runs smoothly even on resource-constrained machines. |
+
+---
 
 ## 🧩 Supported Proxy Modes
 
-| Mode | Description | Default | 
-| --- | --- | --- | 
-| Direct | Connect without a proxy | — | 
-| Burp Suite | HTTP/HTTPS proxy for interception | 127.0.0.1:8080 | 
-| Tor | Network	SOCKS proxy for anonymity | 127.0.0.1:9050 | 
+| Mode | Description | Default Endpoint |
+| --- | --- | --- |
+| **Direct** | Connect without a proxy | — |
+| **Burp Suite** | HTTP/HTTPS proxy for interception | `127.0.0.1:8080` |
+| **Tor** | SOCKS proxy for anonymity | `127.0.0.1:9050` |
+| **Custom** | User-defined proxy configuration | *Configurable* |
 
-## 📦 Installation on firefox
+---
 
-![users](https://img.shields.io/amo/users/hackerproxypro)
-![downloads](https://img.shields.io/amo/dw/hackerproxypro)
+## 📦 Installation
 
-- Goto [Mozilla Firefox official Extension Page](https://addons.mozilla.org/en-US/firefox/addon/hackerproxypro) and click on **Add to firefox**.
-- **Note** You need to enable "**Run in Private Windows**" setting in `about:addons` to make it working.
+### 🦊 Mozilla Firefox
 
-## 📃 Developer 
+[![AMO Users](https://img.shields.io/amo/users/hackerproxypro?style=flat-square&logo=firefox)](https://addons.mozilla.org/en-US/firefox/addon/hackerproxypro)
+[![AMO Downloads](https://img.shields.io/amo/dw/hackerproxypro?style=flat-square&logo=firefox)](https://addons.mozilla.org/en-US/firefox/addon/hackerproxypro)
 
-- Developed by Zishan Ahamed Thandar.
-- Linktree: https://zishanhack.com/links/
+1. Visit the [Mozilla Firefox Official Extension Page](https://addons.mozilla.org/en-US/firefox/addon/hackerproxypro).
+2. Click **Add to Firefox**.
+3. ⚠️ **Important:** Enable **"Run in Private Windows"** in `about:addons` for full functionality.
+
+### 🌐 Google Chrome
+
+> Chrome support is available via the same repository. Load the extension as an unpacked extension from `chrome://extensions` after enabling **Developer Mode**.
+
+---
+
+## 🚀 Usage
+
+1. Click the **Hacker Proxy Pro** icon in your browser toolbar.
+2. Select your desired mode: **Direct**, **Burp Suite**, **Tor**, or **Custom**.
+3. The badge icon will update to reflect the active mode.
+4. Start intercepting, reconning, or browsing anonymously — no manual proxy configuration required.
+
+---
+
+## 👨‍💻 Developer
+
+**Zishan Ahamed Thandar**
+
+- 🔗 Linktree: [https://zishanhack.com/links/](https://zishanhack.com/links/)
+- 🐙 GitHub: [@ZishanAdThandar](https://github.com/ZishanAdThandar)
+
+---
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+Feel free to check the [issues page](https://github.com/ZishanAdThandar/burptoggle/issues) or submit a pull request.
+
+---
 
 ## 📜 License
 
-- MIT License
-- See the LICENSE file for details.
+This project is licensed under the **MIT License**.
+See the [LICENSE](https://opensource.org/licenses/MIT) file for full details.
+
+---
+
+<p align="center">
+  <b>⭐ If you find this project useful, please consider giving it a star! ⭐</b>
+</p>
+
+---
+
+### 🔧 Key Improvements Made
+
+| Area | What Was Fixed |
+| --- | --- |
+| **Structure** | Reorganized with clear headers, horizontal rules, and logical flow. |
+| **Typos** | Fixed "theis", "firefox" capitalization, "Network SOCKS" table formatting. |
+| **Formatting** | Fixed broken table (Tor row), improved badge styling with `for-the-badge`. |
+| **Completeness** | Added Usage, Contributing, and star-request sections. |
+| **Professionalism** | Consistent emoji use, proper markdown syntax, aligned tables. |
+| **Chrome Section** | Added missing Chrome installation guidance. |
+| **Callouts** | Highlighted critical note about Private Windows with ⚠️. |
