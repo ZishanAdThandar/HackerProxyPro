@@ -1,4 +1,4 @@
-# 🔄 Hacker Proxy Pro
+# Hacker Proxy Pro
 
 ### Add-on for Mozilla Firefox & Google Chrome
 
@@ -9,28 +9,26 @@
 
 ---
 
-## 🌟 Introduction
+## Introduction
 
 **Hacker Proxy Pro** is a premium, open-source proxy controller for modern browsers that lets you instantly switch between **Direct connection**, **Burp Suite proxy**, and **Tor**. It is the perfect tool for **Bug Bounty Hunters**, **Web Application Penetration Testers**, and **ethical hackers** who need speed and reliability during live traffic interception, recon, and debugging.
 
 Designed to be **lightweight and efficient**, it consumes minimal RAM — ideal for resource-conscious users and low-spec machines.
 
-> ﷽ — *In the name of Allah, the Most Gracious, the Most Merciful.*
-
 ---
 
-## ✨ Key Features
+## Key Features
 
 | Feature | Description |
 | --- | --- |
-| ⚡ **One-Click Mode Switching** | Instantly toggle between Direct → Burp → Tor → Custom. |
-| 🎨 **Smart Badge & Icon System** | Clear, color-coded badges and SVG icons for each mode. |
-| 🌐 **Cross-Browser Support** | Works seamlessly on both Firefox and Chrome. |
-| 🪶 **Lightweight Architecture** | Runs smoothly even on resource-constrained machines. |
+| **One-Click Mode Switching** | Instantly toggle between Direct, Burp, Tor, and Custom. |
+| **Smart Badge & Icon System** | Clear, color-coded badges and SVG icons for each mode. |
+| **Cross-Browser Support** | Works seamlessly on both Firefox and Chrome. |
+| **Lightweight Architecture** | Runs smoothly even on resource-constrained machines. |
 
 ---
 
-## 🧩 Supported Proxy Modes
+## Supported Proxy Modes
 
 | Mode | Description | Default Endpoint |
 | --- | --- | --- |
@@ -41,24 +39,24 @@ Designed to be **lightweight and efficient**, it consumes minimal RAM — ideal 
 
 ---
 
-## 📦 Installation
+## Installation
 
-### 🦊 Mozilla Firefox
+### Mozilla Firefox
 
 [![AMO Users](https://img.shields.io/amo/users/hackerproxypro?style=flat-square&logo=firefox)](https://addons.mozilla.org/en-US/firefox/addon/hackerproxypro)
 [![AMO Downloads](https://img.shields.io/amo/dw/hackerproxypro?style=flat-square&logo=firefox)](https://addons.mozilla.org/en-US/firefox/addon/hackerproxypro)
 
 1. Visit the [Mozilla Firefox Official Extension Page](https://addons.mozilla.org/en-US/firefox/addon/hackerproxypro).
 2. Click **Add to Firefox**.
-3. ⚠️ **Important:** Enable **"Run in Private Windows"** in `about:addons` for full functionality.
+3. **Important:** Enable **"Run in Private Windows"** in `about:addons` for full functionality.
 
-### 🌐 Google Chrome
+### Google Chrome
 
-> Chrome support is available via the same repository. Load the extension as an unpacked extension from `chrome://extensions` after enabling **Developer Mode**.
+Chrome support is available via the same repository. Load the extension as an unpacked extension from `chrome://extensions` after enabling **Developer Mode**.
 
 ---
 
-## 🚀 Usage
+## Usage
 
 1. Click the **Hacker Proxy Pro** icon in your browser toolbar.
 2. Select your desired mode: **Direct**, **Burp Suite**, **Tor**, or **Custom**.
@@ -67,17 +65,23 @@ Designed to be **lightweight and efficient**, it consumes minimal RAM — ideal 
 
 ---
 
-## 👨‍💻 Developer
+## Developer
 
 **Zishan Ahamed Thandar**
 
-- 🔗 Linktree: [https://zishanhack.com/links/](https://zishanhack.com/links/)
-- 🐙 GitHub: [@ZishanAdThandar](https://github.com/ZishanAdThandar)
-
+- Linktree: [https://zishanhack.com/links/](https://zishanhack.com/links/)
+- GitHub: [@ZishanAdThandar](https://github.com/ZishanAdThandar)
 
 ---
 
-## 📜 License
+## Contributing
+
+Contributions, issues, and feature requests are welcome.
+Feel free to check the [issues page](https://github.com/ZishanAdThandar/burptoggle/issues) or submit a pull request.
+
+---
+
+## License
 
 This project is licensed under the **MIT License**.
 See the [LICENSE](https://opensource.org/licenses/MIT) file for full details.
@@ -85,6 +89,5 @@ See the [LICENSE](https://opensource.org/licenses/MIT) file for full details.
 ---
 
 <p align="center">
-  <b>⭐ If you find this project useful, please consider giving it a star! ⭐</b>
+  <b>If you find this project useful, please consider giving it a star.</b>
 </p>
-
