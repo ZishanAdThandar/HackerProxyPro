@@ -6,9 +6,8 @@ const path = require("path");
 
 const ROOT = __dirname;
 const DIST = path.join(ROOT, "dist");
-const SRC_FILES = ["background.js", "manifest.json"];
+const SRC_FILES = ["background.js", "options.js", "options.html"];
 
-// Ensure directory exists
 function ensureDir(dir) {
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
@@ -33,13 +32,10 @@ function buildFirefox() {
   const outDir = path.join(DIST, "firefox");
   ensureDir(outDir);
 
-  // Copy JS files
   for (const f of SRC_FILES) {
-    if (f === "manifest.json") continue; // handled separately
     copyFile(path.join(ROOT, f), path.join(outDir, f));
   }
 
-  // Manifest as-is
   const manifest = readJSON(path.join(ROOT, "manifest.json"));
   writeJSON(path.join(outDir, "manifest.json"), manifest);
 }
@@ -48,18 +44,18 @@ function buildChrome() {
   const outDir = path.join(DIST, "chrome");
   ensureDir(outDir);
 
-  // Copy JS files
   for (const f of SRC_FILES) {
-    if (f === "manifest.json") continue; // handled separately
     copyFile(path.join(ROOT, f), path.join(outDir, f));
   }
 
-  // Adapt manifest for Chrome
   const manifest = readJSON(path.join(ROOT, "manifest.json"));
 
-  // Chrome doesn't use "applications"
-  if (manifest.applications) {
-    delete manifest.applications;
+  // Chrome does not support browser_specific_settings
+  delete manifest.browser_specific_settings;
+
+  // Chrome proxy.settings does not need <all_urls>
+  if (Array.isArray(manifest.permissions)) {
+    manifest.permissions = manifest.permissions.filter(p => p !== "<all_urls>");
   }
 
   writeJSON(path.join(outDir, "manifest.json"), manifest);
@@ -73,4 +69,3 @@ function main() {
 }
 
 main();
-

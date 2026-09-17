@@ -58,10 +58,11 @@ Chrome support is available via the same repository. Load the extension as an un
 
 ## Usage
 
-1. Click the **Hacker Proxy Pro** icon in your browser toolbar.
-2. Select your desired mode: **Direct**, **Burp Suite**, **Tor**, or **Custom**.
-3. The badge icon will update to reflect the active mode.
-4. Start intercepting, reconning, or browsing anonymously — no manual proxy configuration required.
+1. Open **Options** (right-click the toolbar icon → *Preferences/Options*).
+2. Toggle which modes appear when cycling: **Burp Suite**, **Tor**, **Custom** (Custom is off by default). Configure the Custom proxy host/port/type there too.
+3. Click the **Hacker Proxy Pro** icon in your toolbar (or press **Ctrl+Shift+Y**) to cycle through the enabled modes: **Direct → Burp Suite → Tor → Direct**. The shortcut is configurable in your browser's extension shortcuts settings.
+4. The badge icon updates to reflect the active mode; the Options page shows which mode is currently active.
+5. Expand **Permissions** in Options to see exactly what the extension requests and why.
 
 ---
 

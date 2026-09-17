@@ -3,12 +3,16 @@
 const isFirefox = typeof browser !== "undefined";
 const api = isFirefox ? browser : chrome;
 
-// Modes definition
+// Modes definition (Direct is always enabled)
 const MODES = [
-  { id: "none", label: "Direct (no proxy)" },
-  { id: "burp", label: "Burp Suite – 127.0.0.1:8080" },
-  { id: "tor",  label: "Tor – 127.0.0.1:9050" }
+  { id: "none",   label: "Direct (no proxy)" },
+  { id: "burp",   label: "Burp Suite – 127.0.0.1:8080" },
+  { id: "tor",    label: "Tor – 127.0.0.1:9050" },
+  { id: "custom", label: "Custom" }
 ];
+
+const DEFAULT_ENABLED = { burp: true, tor: true, custom: false };
+const DEFAULT_CUSTOM  = { type: "http", host: "127.0.0.1", port: 8080 };
 
 // ---------------------------- ICON CACHE ----------------------------
 
@@ -16,7 +20,6 @@ const iconCache = new Map();
 
 function getIconData(mode) {
   const key = mode === "off" ? "none" : mode;
-
   if (iconCache.has(key)) return iconCache.get(key);
 
   const icons = {
@@ -34,6 +37,11 @@ function getIconData(mode) {
       "16": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBmaWxsPSIjODA0MEEwIiByeD0iMiIvPgo8dGV4dCB4PSI4IiB5PSIxMiIgZm9udC1mYW1pbHk9Ik1vbmFzcGFjZSxDb3VyaWVyIE5ldyIgZm9udC1zaXplPSIxMCIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNGRkZGRkYiPkg8L3RleHQ+Cjwvc3ZnPgo=",
       "32": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjODA0MEEwIiByeD0iMyIvPgo8dGV4dCB4PSIxNiIgeT0iMjIiIGZvbnQtZmFtaWx5PSJNb25hc3BhY2UsQ291cmllciBOZXciIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSJib2xkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjRkZGRkZGIj5IPC90ZXh0Pgo8L3N2Zz4K",
       "48": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQ4IiBoZWlnaHQ9IjQ4IiBmaWxsPSIjODA0MEEwIiByeD0iNCIvPgo8dGV4dCB4PSIyNCIgeT0iMzIiIGZvbnQtZmFtaWx5PSJNb25hc3BhY2UsQ291cmllciBOZXciIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjRkZGRkZGIj5IPC90ZXh0Pgo8L3N2Zz4K"
+    },
+    custom: {
+      "16": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBmaWxsPSIjMDA4MEZGIiByeD0iMiIvPgo8dGV4dCB4PSI4IiB5PSIxMiIgZm9udC1mYW1pbHk9Ik1vbmFzcGFjZSxDb3VyaWVyIE5ldyIgZm9udC1zaXplPSIxMCIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNGRkZGRkYiPkM8L3RleHQ+Cjwvc3ZnPgo=",
+      "32": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMDA4MEZGIiByeD0iMyIvPgo8dGV4dCB4PSIxNiIgeT0iMjIiIGZvbnQtZmFtaWx5PSJNb25hc3BhY2UsQ291cmllciBOZXciIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSJib2xkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjRkZGRkZGIj5DPC90ZXh0Pgo8L3N2Zz4K",
+      "48": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQ4IiBoZWlnaHQ9IjQ4IiBmaWxsPSIjMDA4MEZGIiByeD0iNCIvPgo8dGV4dCB4PSIyNCIgeT0iMzIiIGZvbnQtZmFtaWx5PSJNb25hc3BhY2UsQ291cmllciBOZXciIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjRkZGRkZGIj5DPC90ZXh0Pgo8L3N2Zz4K"
     }
   };
 
@@ -56,28 +64,74 @@ function setStoredModeId(id) {
   api.storage.local.set({ modeId: id });
 }
 
+function getEnabledModes() {
+  return new Promise(resolve => {
+    api.storage.local.get({ enabled: DEFAULT_ENABLED }, result =>
+      resolve(result.enabled || DEFAULT_ENABLED)
+    );
+  });
+}
+
+function getCustomProxy() {
+  return new Promise(resolve => {
+    api.storage.local.get({ customProxy: DEFAULT_CUSTOM }, result =>
+      resolve(result.customProxy || DEFAULT_CUSTOM)
+    );
+  });
+}
+
+// ---------------------------- MODE STATE ----------------------------
+
+// In-memory cache so the per-request Firefox proxy handler stays fast.
+let currentModeId = "none";
+let customProxyCache = DEFAULT_CUSTOM;
+
 function getModeById(id) {
   return MODES.find(m => m.id === id) || MODES[0];
 }
 
-function getNextModeId(id) {
-  const i = MODES.findIndex(m => m.id === id);
-  return MODES[(i + 1) % MODES.length].id;
+async function getEnabledModeList() {
+  const enabled = await getEnabledModes();
+  return MODES.filter(m => m.id === "none" || enabled[m.id]);
+}
+
+async function getNextModeId(id) {
+  const list = await getEnabledModeList();
+  const i = list.findIndex(m => m.id === id);
+  return list[(i + 1) % list.length].id;
+}
+
+async function sanitizeMode() {
+  const stored = await getStoredModeId("none");
+  const list = await getEnabledModeList();
+
+  if (!list.some(m => m.id === stored)) {
+    setStoredModeId("none");
+    currentModeId = "none";
+    return "none";
+  }
+
+  currentModeId = stored;
+  return stored;
 }
 
 // ---------------------------- FIREFOX PROXY ----------------------------
 
-async function firefoxProxyHandler(details) {
-  const id = await getStoredModeId("none");
-  const mode = getModeById(id);
-
-  if (mode.id === "burp")
-    return { type: "http", host: "127.0.0.1", port: 8080 };
-
-  if (mode.id === "tor")
-    return { type: "socks", host: "127.0.0.1", port: 9050, proxyDNS: true };
-
-  return { type: "direct" };
+function firefoxProxyHandler() {
+  switch (currentModeId) {
+    case "burp":
+      return { type: "http", host: "127.0.0.1", port: 8080 };
+    case "tor":
+      return { type: "socks", host: "127.0.0.1", port: 9050, proxyDNS: true };
+    case "custom": {
+      const cfg = customProxyCache;
+      const result = { type: cfg.type, host: cfg.host, port: cfg.port };
+      if (cfg.type === "socks") result.proxyDNS = true;
+      return result;
+    }
+    default:
+      return { type: "direct" };
+  }
 }
 
 async function applyFirefoxProxy() {
@@ -86,22 +140,17 @@ async function applyFirefoxProxy() {
   if (api.proxy.onRequest.hasListener(firefoxProxyHandler))
     api.proxy.onRequest.removeListener(firefoxProxyHandler);
 
-  const id = await getStoredModeId("none");
-  if (id === "none") return;
+  if (currentModeId === "none") return;
 
-  api.proxy.onRequest.addListener(
-    firefoxProxyHandler,
-    { urls: ["<all_urls>"] }
-  );
+  api.proxy.onRequest.addListener(firefoxProxyHandler, { urls: ["<all_urls>"] });
 }
 
 // ---------------------------- CHROME PROXY ----------------------------
 
 async function applyChromeProxy() {
-  const id = await getStoredModeId("none");
-  const mode = getModeById(id);
+  const id = currentModeId;
 
-  if (mode.id === "none") {
+  if (id === "none") {
     api.proxy.settings.set({
       value: { mode: "direct" },
       scope: "regular"
@@ -109,16 +158,23 @@ async function applyChromeProxy() {
     return;
   }
 
-  const isBurp = mode.id === "burp";
+  let scheme, host, port;
+
+  if (id === "burp") {
+    scheme = "http"; host = "127.0.0.1"; port = 8080;
+  } else if (id === "tor") {
+    scheme = "socks5"; host = "127.0.0.1"; port = 9050;
+  } else if (id === "custom") {
+    const cfg = customProxyCache;
+    scheme = cfg.type === "socks" ? "socks5" : cfg.type;
+    host = cfg.host; port = cfg.port;
+  }
+
   api.proxy.settings.set({
     value: {
       mode: "fixed_servers",
       rules: {
-        singleProxy: {
-          scheme: isBurp ? "http" : "socks5",
-          host: "127.0.0.1",
-          port: isBurp ? 8080 : 9050
-        },
+        singleProxy: { scheme, host, port },
         bypassList: ["<local>"]
       }
     },
@@ -129,9 +185,7 @@ async function applyChromeProxy() {
 // ---------------------------- UI ICON + BADGE ----------------------------
 
 async function updateBrowserAction() {
-  const id = await getStoredModeId("none");
-  const mode = getModeById(id);
-
+  const mode = getModeById(currentModeId);
   const action = api.browserAction;
 
   action.setTitle({ title: "Hacker Proxy Pro – " + mode.label });
@@ -143,6 +197,9 @@ async function updateBrowserAction() {
   } else if (mode.id === "tor") {
     action.setBadgeText({ text: "Tor" });
     action.setBadgeBackgroundColor({ color: [128, 64, 160, 255] });
+  } else if (mode.id === "custom") {
+    action.setBadgeText({ text: "Cust" });
+    action.setBadgeBackgroundColor({ color: [0, 128, 255, 255] });
   } else {
     action.setBadgeText({ text: "" });
   }
@@ -151,6 +208,9 @@ async function updateBrowserAction() {
 // ---------------------------- APPLY MODE ----------------------------
 
 async function applyMode() {
+  const id = await sanitizeMode();
+  currentModeId = id;
+
   if (isFirefox) await applyFirefoxProxy();
   else await applyChromeProxy();
 
@@ -160,18 +220,36 @@ async function applyMode() {
 // ---------------------------- INIT ----------------------------
 
 async function init() {
-  const id = await getStoredModeId("none");
-  await setStoredModeId(id); // ensure consistency
+  const custom = await getCustomProxy();
+  customProxyCache = custom;
+
   await applyMode();
 }
 
-// On click: switch mode and apply
+// ---------------------------- EVENTS ----------------------------
+
+// On click (or keyboard shortcut): switch mode and apply
 if (api.browserAction && api.browserAction.onClicked) {
   api.browserAction.onClicked.addListener(async () => {
-    const current = await getStoredModeId("none");
-    const next = getNextModeId(current);
+    const next = await getNextModeId(currentModeId);
+    if (next === currentModeId) return;
+
+    currentModeId = next;
     setStoredModeId(next);
     applyMode();
+  });
+}
+
+// React to changes from the options page
+if (api.storage && api.storage.onChanged) {
+  api.storage.onChanged.addListener((changes, area) => {
+    if (area !== "local") return;
+
+    if (changes.customProxy) customProxyCache = changes.customProxy.newValue;
+
+    if (changes.enabled || changes.customProxy) {
+      applyMode();
+    }
   });
 }
 
@@ -184,4 +262,3 @@ if (api.runtime.onInstalled)
 
 // First run
 init();
-

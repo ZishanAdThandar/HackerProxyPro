@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hacker Proxy Pro – Options</title>
+  <style>
+    :root { color-scheme: light dark; }
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 400px; margin: 2rem auto; padding: 0 1rem;
+      line-height: 1.5;
+    }
+    h1 { font-size: 1.1rem; margin-bottom: .25rem; }
+    h2 { font-size: 1rem; }
+    .muted { color: #888; font-size: .85rem; }
+    .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: .5rem; vertical-align: middle; }
+    .row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .6rem 0; border-bottom: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+    }
+    .toggle { width: 18px; height: 18px; accent-color: #0080ff; }
+    .field { display: grid; gap: .25rem; margin-bottom: .75rem; }
+    .field input, .field select {
+      width: 100%; padding: .35rem .5rem;
+    }
+    details { margin-top: 2rem; }
+    code { background: color-mix(in srgb, currentColor 10%, transparent); padding: 0 .25rem; border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+  <h1>Hacker Proxy Pro</h1>
+  <p id="active-mode" class="muted" style="font-weight:600"></p>
+  <p class="muted">Choose which proxy modes appear when you click the toolbar icon. Direct is always available.</p>
+
+  <div class="row">
+    <label for="enabled-burp"><span class="swatch" style="background:#00FF41"></span>Burp Suite</label>
+    <input type="checkbox" id="enabled-burp" class="toggle">
+  </div>
+  <div class="row">
+    <label for="enabled-tor"><span class="swatch" style="background:#8040A0"></span>Tor</label>
+    <input type="checkbox" id="enabled-tor" class="toggle">
+  </div>
+  <div class="row">
+    <label for="enabled-custom"><span class="swatch" style="background:#0080FF"></span>Custom</label>
+    <input type="checkbox" id="enabled-custom" class="toggle">
+  </div>
+
+  <section id="custom-section" hidden>
+    <h2>Custom Proxy</h2>
+    <div class="field">
+      <label for="custom-type">Type</label>
+      <select id="custom-type">
+        <option value="http">HTTP</option>
+        <option value="socks">SOCKS</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="custom-host">Host</label>
+      <input type="text" id="custom-host" placeholder="127.0.0.1">
+    </div>
+    <div class="field">
+      <label for="custom-port">Port</label>
+      <input type="number" id="custom-port" min="1" max="65535" placeholder="8080">
+    </div>
+    <button id="save-custom">Save</button>
+    <span id="form-msg" class="muted" hidden></span>
+  </section>
+
+  <details>
+    <summary>Permissions</summary>
+    <p class="muted">This extension requests only the permissions it needs:</p>
+    <ul id="permissions-list"></ul>
+  </details>
+
+  <script src="options.js"></script>
+</body>
+</html>
