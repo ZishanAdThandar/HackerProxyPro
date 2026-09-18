@@ -1,6 +1,6 @@
 {
   "name": "hacker-proxy-pro",
-  "version": "158.2.4",
+  "version": "158.2.5",
   "description": "A lightweight, easy-to-use open source proxy switch for Bug Bounty Hunters, Pentesters, and Security Researchers. Developed by Zishan Ahamed Thandar.",
   "main": "background.js",
   "scripts": {
